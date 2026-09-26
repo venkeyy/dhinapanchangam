@@ -9,11 +9,13 @@ export default function CityPicker({
   current,
   basePath,
   label,
+  suffix = "",
 }: {
   options: Option[];
   current: string;
   basePath: string; // e.g. /en/nalla-neram-today
   label: string;
+  suffix?: string; // e.g. /2027-01-15 on date pages
 }) {
   const router = useRouter();
   const groups = [...new Set(options.map((o) => o.group))];
@@ -23,7 +25,7 @@ export default function CityPicker({
       <select
         className="rounded-md border border-stone-300 bg-white px-2 py-1.5 text-base text-stone-900 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-100"
         value={current}
-        onChange={(e) => router.push(`${basePath}/${e.target.value}`)}
+        onChange={(e) => router.push(`${basePath}/${e.target.value}${suffix}`)}
       >
         {groups.map((g) => (
           <optgroup key={g} label={g}>

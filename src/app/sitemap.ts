@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${SITE.url}/${l}/${t}/${c.slug}`,
         lastModified: now,
         changeFrequency: "daily" as const,
-        priority: c.country === "IN" ? 0.8 : 0.6,
+        priority: t.endsWith("-tomorrow") ? (c.country === "IN" ? 0.7 : 0.5) : c.country === "IN" ? 0.8 : 0.6,
       })),
     ),
   );

@@ -3,7 +3,7 @@
 Bilingual (Tamil + English) daily panchangam for any city: tithi, natchathiram, yogam, karanam, nalla neram (Gowri panchangam), rahu kalam, yamagandam, kuligai and horai.
 
 - **Engine:** `src/engine/` — Swiss Ephemeris (`sweph`, built-in Moshier ephemeris, no data files), Lahiri ayanamsa. Rahu kalam, Gowri and horai are computed from the real local sunrise/sunset.
-- **Site:** Next.js App Router. Routes: `/{en|ta}/{panchangam-today|nalla-neram-today|rahu-kalam-today|horai-today}/{city}`. Pages are static and regenerate every 15 minutes.
+- **Site:** Next.js App Router. Routes: `/{en|ta}/{panchangam|nalla-neram|rahu-kalam|horai}-{today|tomorrow}/{city}` (static, regenerate every 15 minutes) and `/{en|ta}/panchangam/{city}/{yyyy-mm-dd}` for any date 1950–2100 (rendered on first visit, then cached).
 - **Cities:** `src/engine/cities.ts`.
 
 ## Run locally

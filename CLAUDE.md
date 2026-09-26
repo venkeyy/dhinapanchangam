@@ -10,7 +10,7 @@ Bilingual (Tamil + English) daily panchangam site for any city in the world, bui
 - Ayanamsa: Lahiri (SE_SIDM_LAHIRI).
 - Rahu kalam, yamagandam, kuligai, Gowri (nalla neram) and horai are calculated from the REAL local sunrise/sunset (like Drik), not fixed 6 AM clock times.
 - Sunrise/sunset = upper limb with refraction (Swiss Ephemeris default). Panchangam day = sunrise to next sunrise. Times are shown rounded to the nearest minute.
-- URLs: /{en|ta}/{tool}/{city-slug}, tools = panchangam-today, nalla-neram-today, rahu-kalam-today, horai-today. hreflang between en and ta-IN. Titles target romanised Tamil search terms ("nalla neram today", "rahu kalam today", "today panchangam tamil").
+- URLs: /{en|ta}/{tool}/{city-slug}, tools = panchangam, nalla-neram, rahu-kalam, horai, each as -today and -tomorrow (e.g. nalla-neram-tomorrow). Any date 1950–2100: /{en|ta}/panchangam/{city-slug}/{yyyy-mm-dd} (full panchangam, rendered on first visit then cached, indexable but not in the sitemap). hreflang between en and ta-IN. Titles target romanised Tamil search terms ("nalla neram today", "rahu kalam today", "today panchangam tamil").
 - City pages must show real computed data per city (no thin duplicate pages). Grow the city list gradually.
 
 ## Where things are
@@ -20,6 +20,8 @@ Bilingual (Tamil + English) daily panchangam site for any city in the world, bui
 - `src/engine/cities.ts` — launch city list (62 cities, IANA timezones).
 - `src/lib/site.ts` — UI text in both languages, tool titles/descriptions.
 - `src/components/PanchangView.tsx` — the page layout.
+- `src/components/DateNav.tsx` — today/tomorrow switch, previous/next day, date picker.
+- `src/app/[lang]/panchangam/[city]/[date]/page.tsx` — any-date page. Don't add `dynamicParams = false` to `[lang]/layout.tsx`: children inherit it and date pages would 404.
 - `scripts/check.ts` — `npx tsx scripts/check.ts 2026-09-26 chennai` prints one day's panchangam for checking.
 
 ## Validation baseline (Drik Panchang, Chennai, 26 Sep 2026)

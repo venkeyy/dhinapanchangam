@@ -2,9 +2,17 @@ import Link from "next/link";
 import type { Panchang } from "@/engine/panchang";
 import type { City } from "@/engine/cities";
 import { fmtLongDate, fmtTime } from "@/lib/format";
-import { T, TOOLS, TOOL_TEXT, fill, type Lang, type Tool } from "@/lib/site";
+import { KINDS, T, TOOL_TEXT, fill, toolOf, type Day, type Kind, type Lang } from "@/lib/site";
 
-type Props = { p: Panchang; city: City; lang: Lang; tool: Tool };
+type Props = {
+  p: Panchang;
+  city: City;
+  lang: Lang;
+  kind: Kind; // which card comes first
+  heading: string;
+  day?: Day; // set on today/tomorrow pages: links to the other tools for the same day
+  nav?: React.ReactNode; // shown under the heading
+};
 
 function Card({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) {
   return (
@@ -15,7 +23,7 @@ function Card({ title, children, id }: { title: string; children: React.ReactNod
   );
 }
 
-export default function PanchangView({ p, city, lang, tool }: Props) {
+export default function PanchangView({ p, city, lang, kind, heading, day, nav }: Props) {
   const tz = city.tz;
   const t = (k: string) => T[k][lang];
   const time = (iso: string) => fmtTime(iso, tz, p.date, lang);
@@ -158,11 +166,11 @@ export default function PanchangView({ p, city, lang, tool }: Props) {
     </Card>
   );
 
-  const order: Record<Tool, React.ReactNode[]> = {
-    "panchangam-today": [core, avoid, gowri, horai],
-    "nalla-neram-today": [gowri, avoid, core, horai],
-    "rahu-kalam-today": [avoid, gowri, core, horai],
-    "horai-today": [horai, avoid, gowri, core],
+  const order: Record<Kind, React.ReactNode[]> = {
+    panchangam: [core, avoid, gowri, horai],
+    "nalla-neram": [gowri, avoid, core, horai],
+    "rahu-kalam": [avoid, gowri, core, horai],
+    horai: [horai, avoid, gowri, core],
   };
 
   const tamilLine =
@@ -173,23 +181,27 @@ export default function PanchangView({ p, city, lang, tool }: Props) {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-bold leading-tight sm:text-3xl">{fill(TOOL_TEXT[tool].h1[lang], { city: nm(city.name) })}</h1>
+        <h1 className="text-2xl font-bold leading-tight sm:text-3xl">{heading}</h1>
         <p className="mt-1 text-stone-600 dark:text-stone-300">
           {fmtLongDate(p.date, tz, lang)} · <span className="font-medium">{tamilLine}</span>
         </p>
       </div>
 
-      {order[tool].map((node, i) => (
+      {nav}
+
+      {order[kind].map((node, i) => (
         <div key={i}>{node}</div>
       ))}
 
-      <nav className="flex flex-wrap gap-2 text-sm">
-        {TOOLS.filter((x) => x !== tool).map((x) => (
-          <Link key={x} href={`/${lang}/${x}/${city.slug}`} className="rounded-full border border-stone-300 px-3 py-1 hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800">
-            {fill(TOOL_TEXT[x].h1[lang], { city: nm(city.name) })}
-          </Link>
-        ))}
-      </nav>
+      {day && (
+        <nav className="flex flex-wrap gap-2 text-sm">
+          {KINDS.filter((k) => k !== kind).map((k) => (
+            <Link key={k} href={`/${lang}/${toolOf(k, day)}/${city.slug}`} className="rounded-full border border-stone-300 px-3 py-1 hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800">
+              {fill(TOOL_TEXT[toolOf(k, day)].h1[lang], { city: nm(city.name) })}
+            </Link>
+          ))}
+        </nav>
+      )}
 
       <p className="text-sm text-stone-500">{fill(T.method[lang], { city: nm(city.name), tz })}</p>
     </div>

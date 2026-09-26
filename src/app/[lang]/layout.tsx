@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "../globals.css";
-import { LANGS, SITE, T, TOOLS, TOOL_TEXT, isLang } from "@/lib/site";
+import { LANGS, SITE, T, TODAY_TOOLS, TOOL_TEXT, isLang } from "@/lib/site";
 
-export const dynamicParams = false;
+// No `dynamicParams = false` here: child routes inherit it, and the any-date
+// pages must render on demand. Unknown languages still 404 via notFound().
 export function generateStaticParams() {
   return LANGS.map((lang) => ({ lang }));
 }
@@ -26,7 +27,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
               {SITE.name[lang]}
             </Link>
             <nav className="flex flex-wrap items-center gap-3 text-sm">
-              {TOOLS.map((tool) => (
+              {TODAY_TOOLS.map((tool) => (
                 <Link key={tool} href={`/${lang}/${tool}/chennai`} className="hover:text-maroon">
                   {TOOL_TEXT[tool].nav[lang]}
                 </Link>
