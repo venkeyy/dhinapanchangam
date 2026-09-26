@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CityPicker from "@/components/CityPicker";
 import DateNav from "@/components/DateNav";
+import JsonLd from "@/components/JsonLd";
 import PanchangView from "@/components/PanchangView";
 import { CITIES, cityBySlug } from "@/engine/cities";
-import { cityOptions, toolMetadata, toolPanchang } from "@/lib/page-data";
+import { cityOptions, toolMetadata, toolPanchang, toolSchema } from "@/lib/page-data";
 import { LANGS, T, TOOLS, TOOL_TEXT, fill, isLang, isTool, splitTool } from "@/lib/site";
 
 // "Today" and "tomorrow" pages are regenerated every 15 minutes, so each city
@@ -31,6 +32,7 @@ export default async function ToolPage({ params }: PageProps<"/[lang]/[tool]/[ci
   const p = toolPanchang(tool, city);
   return (
     <>
+      <JsonLd data={toolSchema(lang, tool, city)} />
       <div className="mb-4">
         <CityPicker options={cityOptions(lang)} current={city.slug} basePath={`/${lang}/${tool}`} label={T.city[lang]} />
       </div>

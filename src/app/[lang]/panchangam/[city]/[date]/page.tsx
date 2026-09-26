@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CityPicker from "@/components/CityPicker";
 import DateNav from "@/components/DateNav";
+import JsonLd from "@/components/JsonLd";
 import PanchangView from "@/components/PanchangView";
 import { cityBySlug } from "@/engine/cities";
 import { computePanchang } from "@/engine/panchang";
 import { fmtDate, isIsoDate } from "@/lib/format";
-import { cityOptions, dateMetadata } from "@/lib/page-data";
+import { cityOptions, dateMetadata, dateSchema } from "@/lib/page-data";
 import { DATE_TEXT, MAX_DATE, MIN_DATE, T, fill, isLang } from "@/lib/site";
 
 // Any date from 1950 to 2100. Nothing is built ahead of time: each page is
@@ -37,6 +38,7 @@ export default async function DatePage({ params }: PageProps<"/[lang]/panchangam
   const p = computePanchang(date, city);
   return (
     <>
+      <JsonLd data={dateSchema(lang, date, city)} />
       <div className="mb-4">
         <CityPicker options={cityOptions(lang)} current={city.slug} basePath={`/${lang}/panchangam`} suffix={`/${date}`} label={T.city[lang]} />
       </div>

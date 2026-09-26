@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CityPicker from "@/components/CityPicker";
 import DateNav from "@/components/DateNav";
+import JsonLd from "@/components/JsonLd";
 import PanchangView from "@/components/PanchangView";
 import { CITIES, DEFAULT_CITY } from "@/engine/cities";
-import { cityOptions, toolMetadata, toolPanchang } from "@/lib/page-data";
+import { cityOptions, homeSchema, toolMetadata, toolPanchang } from "@/lib/page-data";
 import { SITE, T, TOOL_TEXT, fill, isLang } from "@/lib/site";
 
 export const revalidate = 900;
@@ -28,6 +29,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const p = toolPanchang("panchangam-today", city);
   return (
     <>
+      <JsonLd data={homeSchema(lang, city)} />
       <div className="mb-4">
         <CityPicker options={cityOptions(lang)} current={city.slug} basePath={`/${lang}/panchangam-today`} label={T.city[lang]} />
       </div>
