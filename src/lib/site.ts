@@ -2,6 +2,7 @@ export const SITE = {
   name: { en: "Dhina Panchangam", ta: "தின பஞ்சாங்கம்" },
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhinapanchangam.com",
   repo: "https://github.com/venkeyy/dhinapanchangam", // public source link required by AGPL
+  gaId: process.env.NEXT_PUBLIC_GA_ID, // Google Analytics 4 measurement ID (G-…)
 };
 
 export const LANGS = ["en", "ta"] as const;

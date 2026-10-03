@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -46,6 +47,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           </a>
         </footer>
       </body>
+      {/* Set NEXT_PUBLIC_GA_ID in Netlify; without it (e.g. local dev) nothing is tracked. */}
+      {SITE.gaId && <GoogleAnalytics gaId={SITE.gaId} />}
     </html>
   );
 }

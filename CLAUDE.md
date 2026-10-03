@@ -11,6 +11,7 @@ Bilingual (Tamil + English) daily panchangam site for any city in the world, bui
 - Rahu kalam, yamagandam, kuligai, Gowri (nalla neram) and horai are calculated from the REAL local sunrise/sunset (like Drik), not fixed 6 AM clock times.
 - Sunrise/sunset = upper limb with refraction (Swiss Ephemeris default). Panchangam day = sunrise to next sunrise. Times are shown rounded to the nearest minute.
 - URLs: /{en|ta}/{tool}/{city-slug}, tools = panchangam, nalla-neram, rahu-kalam, horai, each as -today and -tomorrow (e.g. nalla-neram-tomorrow). Any date 1950–2100: /{en|ta}/panchangam/{city-slug}/{yyyy-mm-dd} (full panchangam, rendered on first visit then cached, indexable but not in the sitemap). hreflang between en and ta-IN. Titles target romanised Tamil search terms ("nalla neram today", "rahu kalam today", "today panchangam tamil").
+- Analytics: Google Analytics 4 via @next/third-parties, ID in the Netlify env var NEXT_PUBLIC_GA_ID (no ID = no tracking, e.g. local dev). No cookie banner yet (Venkat chose this, Oct 2026); add an EU/UK consent banner before AdSense.
 - City pages must show real computed data per city (no thin duplicate pages). Grow the city list gradually.
 
 ## Where things are
