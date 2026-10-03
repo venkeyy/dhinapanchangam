@@ -16,7 +16,7 @@ npx tsx scripts/check.ts 2026-09-26 chennai   # print one day's panchangam
 
 ## Deploy (Netlify)
 
-Import this GitHub repo in Netlify → build settings are read from `netlify.toml`. Set `NEXT_PUBLIC_SITE_URL` to the live URL (e.g. `https://dhinapanchangam.com`).
+Import this GitHub repo in Netlify → build settings are read from `netlify.toml`. Set `NEXT_PUBLIC_SITE_URL` to the live URL (`https://dhinapanchangam.com`).
 
 ## Accuracy (checked against Drik Panchang, Chennai, 26 Sep 2026)
 

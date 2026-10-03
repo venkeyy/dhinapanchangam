@@ -4,3 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# The old Netlify address permanently redirects to the real domain
+[[redirects]]
+  from = "https://dhinapanchangam.netlify.app/*"
+  to = "https://dhinapanchangam.com/:splat"
+  status = 301
+  force = true

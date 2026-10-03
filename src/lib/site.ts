@@ -1,7 +1,6 @@
 export const SITE = {
   name: { en: "Dhina Panchangam", ta: "தின பஞ்சாங்கம்" },
-  // Change to https://dhinapanchangam.com once the domain is connected
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhinapanchangam.netlify.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhinapanchangam.com",
   repo: "https://github.com/venkeyy/dhinapanchangam", // public source link required by AGPL
 };
 

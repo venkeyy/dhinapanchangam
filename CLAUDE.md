@@ -2,7 +2,7 @@
 
 # Dhina Panchangam — project brief for Claude Code
 
-Bilingual (Tamil + English) daily panchangam site for any city in the world, built to compete with drikpanchang.com on Tamil searches. Owner: Venkat (Chennai). Domain planned: dhinapanchangam.com (until bought, the site runs on dhinapanchangam.netlify.app).
+Bilingual (Tamil + English) daily panchangam site for any city in the world, built to compete with drikpanchang.com on Tamil searches. Owner: Venkat (Chennai). Domain: dhinapanchangam.com (bought Oct 2026 at GoDaddy; DNS stays at GoDaddy: A @ 75.2.60.5, CNAME www to dhinapanchangam.netlify.app). The old .netlify.app address 301-redirects to it (netlify.toml).
 
 ## Decisions (do not change without asking)
 - Stack: Next.js (App Router, TypeScript, Tailwind) on Netlify, code on a PUBLIC GitHub repo.
