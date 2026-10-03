@@ -43,7 +43,7 @@ export default async function ToolPage({ params }: PageProps<"/[lang]/[tool]/[ci
         kind={kind}
         day={day}
         heading={fill(TOOL_TEXT[tool].h1[lang], { city: city.name[lang] })}
-        nav={<DateNav lang={lang} city={city.slug} date={p.date} kind={kind} day={day} />}
+        nav={<DateNav lang={lang} city={city.slug} tz={city.tz} date={p.date} kind={kind} day={day} />}
       />
     </>
   );

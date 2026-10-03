@@ -48,7 +48,7 @@ export default async function DatePage({ params }: PageProps<"/[lang]/panchangam
         lang={lang}
         kind="panchangam"
         heading={fill(DATE_TEXT.h1[lang], { city: city.name[lang], date: fmtDate(date, lang) })}
-        nav={<DateNav lang={lang} city={city.slug} date={date} />}
+        nav={<DateNav lang={lang} city={city.slug} tz={city.tz} date={date} />}
       />
     </>
   );

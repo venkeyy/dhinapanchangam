@@ -40,7 +40,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         kind="panchangam"
         day="today"
         heading={fill(TOOL_TEXT["panchangam-today"].h1[lang], { city: city.name[lang] })}
-        nav={<DateNav lang={lang} city={city.slug} date={p.date} kind="panchangam" day="today" />}
+        nav={<DateNav lang={lang} city={city.slug} tz={city.tz} date={p.date} kind="panchangam" day="today" />}
       />
       <section className="mt-8">
         <h2 className="mb-2 text-lg font-semibold">{T.otherCities[lang]}</h2>
