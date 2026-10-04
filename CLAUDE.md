@@ -10,7 +10,7 @@ Bilingual (Tamil + English) daily panchangam site for any city in the world, bui
 - Ayanamsa: Lahiri (SE_SIDM_LAHIRI).
 - Rahu kalam, yamagandam, kuligai, Gowri (nalla neram) and horai are calculated from the REAL local sunrise/sunset (like Drik), not fixed 6 AM clock times.
 - Sunrise/sunset = upper limb with refraction (Swiss Ephemeris default). Panchangam day = sunrise to next sunrise. Times are shown rounded to the nearest minute.
-- URLs: /{en|ta}/{tool}/{city-slug}, tools = panchangam, nalla-neram, rahu-kalam, horai, each as -today and -tomorrow (e.g. nalla-neram-tomorrow). Any date 1950–2100: /{en|ta}/panchangam/{city-slug}/{yyyy-mm-dd} (full panchangam, rendered on first visit then cached, indexable but not in the sitemap). hreflang between en and ta-IN. Titles target romanised Tamil search terms ("nalla neram today", "rahu kalam today", "today panchangam tamil").
+- URLs: /{en|ta}/{tool}/{city-slug}, tools = panchangam, nalla-neram, rahu-kalam, horai, each as -today and -tomorrow (e.g. nalla-neram-tomorrow). Any date 1950–2100: /{en|ta}/panchangam/{city-slug}/{yyyy-mm-dd} (full panchangam, rendered on first visit then cached, indexable but not in the sitemap). Tamil monthly calendar: /{en|ta}/tamil-calendar/{year}/{month} (Chennai) and /{en|ta}/tamil-calendar/{year}/{month}/{city-slug} for other cities (Oct 2026–Dec 2027, set by CAL_FIRST/CAL_LAST in site.ts); year pages /{en|ta}/tamil-calendar/{year}; /{en|ta}/tamil-calendar redirects to the current month (header menu link). Calendar day cells link to the date pages above (the "Tamil daily calendar"). hreflang between en and ta-IN, also in the sitemap. Titles target romanised Tamil search terms ("nalla neram today", "rahu kalam today", "today panchangam tamil").
 - Analytics: Google Analytics 4 via @next/third-parties, ID in the Netlify env var NEXT_PUBLIC_GA_ID (no ID = no tracking, e.g. local dev). No cookie banner yet (Venkat chose this, Oct 2026); add an EU/UK consent banner before AdSense.
 - City pages must show real computed data per city (no thin duplicate pages). Grow the city list gradually.
 
@@ -18,7 +18,9 @@ Bilingual (Tamil + English) daily panchangam site for any city in the world, bui
 - `src/engine/astro.ts` — Swiss Ephemeris wrapper (sidereal positions, rise/set).
 - `src/engine/panchang.ts` — tithi, natchathiram, yogam, karanam (with end times), rahu kalam/yamagandam/kuligai, abhijit, Gowri day/night table, horai, Tamil month/date/year.
 - `src/engine/names.ts` — all names in romanised Tamil + Tamil script.
-- `src/engine/cities.ts` — launch city list (62 cities, IANA timezones).
+- `src/engine/cities.ts` — launch city list (63 cities, IANA timezones).
+- `src/engine/observances.ts` — ALL vratham rules (Amavasai, Pournami, Ekadasi, Pradosham, Sashti, Kiruthigai, Sankatahara Chaturthi), commented for checking against printed panchangams. `npx tsx scripts/observances.ts 2026-10-01 2026-12-31 chennai` lists the dates.
+- `src/lib/calendar.ts`, `src/lib/calendar-page.ts`, `src/components/MonthCalendar.tsx`, `src/components/MonthPage.tsx` — Tamil monthly calendar. Only Chennai month pages are pre-built; other cities' month pages render on first visit and are kept (pre-building all ~1,900 added ~700 MB per deploy).
 - `src/lib/site.ts` — UI text in both languages, tool titles/descriptions.
 - `src/components/PanchangView.tsx` — the page layout.
 - `src/components/DateNav.tsx` — today/tomorrow switch, previous/next day, date picker.
@@ -32,6 +34,8 @@ Our engine: all of these match to the minute except tithi/yoga/karana (about 1 m
 ## Known open questions
 - Gowri table: sources disagree on Saturday night's last slot (Rogam vs Soram). We use Rogam. Venkat will check his grandfather's Tamil books.
 - Vakya panchangam (from the grandfather's books) comes in Phase 4, shown alongside Thirukanitha.
+- Observance rules to confirm (observances.ts): kshaya Ekadasi is not marked; when a tithi is at sunrise on two days only the first is marked; Pournami is the sunrise-tithi day (so 26 Oct and 24 Dec 2026 in Chennai, where some printed calendars may show the evening before).
+- Tamil month start uses the sankranti-before-sunset rule in local time, so diaspora cities can differ by a day from India (e.g. Aippasi 1 = 17 Oct 2026 in London, 18 Oct in Chennai).
 
 ## Roadmap
 1. Phase 1 (to 15 Nov 2026): daily tools MVP live — share-card images, tomorrow/date view, sitemaps, schema, 5 pillar articles.

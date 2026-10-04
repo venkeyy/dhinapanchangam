@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import CityPicker from "@/components/CityPicker";
 import DateNav from "@/components/DateNav";
@@ -8,7 +9,8 @@ import { cityBySlug } from "@/engine/cities";
 import { computePanchang } from "@/engine/panchang";
 import { fmtDate, isIsoDate } from "@/lib/format";
 import { cityOptions, dateMetadata, dateSchema } from "@/lib/page-data";
-import { DATE_TEXT, MAX_DATE, MIN_DATE, T, fill, isLang } from "@/lib/site";
+import { dayObservances, inCalendar, monthName, monthPath } from "@/lib/calendar";
+import { CAL_TEXT, DATE_TEXT, MAX_DATE, MIN_DATE, T, fill, isLang } from "@/lib/site";
 
 // Any date from 1950 to 2100. Nothing is built ahead of time: each page is
 // computed on its first visit and then kept (a date's panchangam never changes;
@@ -36,6 +38,8 @@ export default async function DatePage({ params }: PageProps<"/[lang]/panchangam
   if (!r) notFound();
   const { lang, city, date } = r;
   const p = computePanchang(date, city);
+  const obs = dayObservances(date, city);
+  const ym = { year: Number(date.slice(0, 4)), month: Number(date.slice(5, 7)) };
   return (
     <>
       <JsonLd data={dateSchema(lang, date, city)} />
@@ -48,7 +52,25 @@ export default async function DatePage({ params }: PageProps<"/[lang]/panchangam
         lang={lang}
         kind="panchangam"
         heading={fill(DATE_TEXT.h1[lang], { city: city.name[lang], date: fmtDate(date, lang) })}
-        nav={<DateNav lang={lang} city={city.slug} tz={city.tz} date={date} />}
+        nav={
+          <div className="space-y-2">
+            {obs.length > 0 && (
+              <p className="flex flex-wrap gap-2">
+                {obs.map((o) => (
+                  <span key={o.key} className="rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900 dark:bg-amber-950/50 dark:text-amber-200">
+                    {o.icon} {o.name[lang]}
+                  </span>
+                ))}
+              </p>
+            )}
+            <DateNav lang={lang} city={city.slug} tz={city.tz} date={date} />
+            {inCalendar(ym) && (
+              <Link href={monthPath(lang, ym, city.slug)} className="inline-block text-sm underline decoration-stone-300 hover:text-maroon">
+                📅 {fill(CAL_TEXT.monthCalendar[lang], { month: monthName(ym.month, lang), year: String(ym.year) })}
+              </Link>
+            )}
+          </div>
+        }
       />
     </>
   );

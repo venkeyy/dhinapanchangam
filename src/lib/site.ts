@@ -124,18 +124,58 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
   },
 };
 
-// Any-date page: /{lang}/panchangam/{city}/{yyyy-mm-dd}
+// Any-date page ("Tamil daily calendar"): /{lang}/panchangam/{city}/{yyyy-mm-dd}
 export const DATE_TEXT: { h1: L; title: L; desc: L } = {
-  h1: { en: "Panchangam for {date} in {city}", ta: "{city} பஞ்சாங்கம் — {date}" },
+  h1: { en: "Tamil Daily Calendar – {date}, {city}", ta: "தமிழ் தினசரி காலண்டர் — {date}, {city}" },
   title: {
-    en: "Panchangam {date} {city} – Tithi, Nalla Neram, Rahu Kalam | Dhina Panchangam",
-    ta: "பஞ்சாங்கம் {date} {city} – திதி, நல்ல நேரம், ராகு காலம்",
+    en: "Tamil Daily Calendar {date} {city} – Nalla Neram, Rahu Kalam, Panchangam | Dhina Panchangam",
+    ta: "தமிழ் தினசரி காலண்டர் {date} {city} – நல்ல நேரம், ராகு காலம், பஞ்சாங்கம் | தின பஞ்சாங்கம்",
   },
   desc: {
-    en: "Tamil panchangam for {city} on {date}: tithi, natchathiram, yogam, karanam, nalla neram (Gowri), rahu kalam, horai and sunrise.",
-    ta: "{city} {date} தமிழ் பஞ்சாங்கம்: திதி, நட்சத்திரம், யோகம், கரணம், நல்ல நேரம், ராகு காலம், ஹோரை மற்றும் சூரிய உதயம்.",
+    en: "Tamil daily calendar for {city} on {date}: tithi, natchathiram, yogam, karanam, nalla neram (Gowri), rahu kalam, horai and sunrise.",
+    ta: "{city} {date} தமிழ் தினசரி காலண்டர்: திதி, நட்சத்திரம், யோகம், கரணம், நல்ல நேரம், ராகு காலம், ஹோரை மற்றும் சூரிய உதயம்.",
   },
 };
+
+// Tamil monthly calendar: /{lang}/tamil-calendar/{year}/{month}[/{city}] and /{lang}/tamil-calendar/{year}
+export const CAL_TEXT: Record<string, L> = {
+  nav: { en: "Tamil Calendar", ta: "தமிழ் காலண்டர்" },
+  monthTitle: {
+    en: "{month} {year} Tamil Calendar{cityPart} – Nalla Neram, Tithi, Natchathiram | Dhina Panchangam",
+    ta: "{month} {year} தமிழ் காலண்டர்{cityPart} – நல்ல நேரம், திதி, நட்சத்திரம் | தின பஞ்சாங்கம்",
+  },
+  monthH1: { en: "{month} {year} Tamil Calendar{cityPart} ({tamilMonths})", ta: "{month} {year} தமிழ் காலண்டர்{cityPart} ({tamilMonths})" },
+  monthDesc: {
+    en: "{month} {year} Tamil calendar for {city}: daily tithi, natchathiram and Tamil date, with Amavasai, Pournami, Pradosham, Ekadasi, Sashti, Kiruthigai and Sankatahara Chaturthi days. Tamil calendar {year} {monthLower}.",
+    ta: "{city} {month} {year} தமிழ் காலண்டர்: தினசரி திதி, நட்சத்திரம், தமிழ் தேதி, அமாவாசை, பௌர்ணமி, பிரதோஷம், ஏகாதசி, சஷ்டி, கிருத்திகை, சங்கடஹர சதுர்த்தி நாட்கள்.",
+  },
+  yearTitle: {
+    en: "Tamil Calendar {year} – Monthly Tamil Calendar with Nalla Neram | Dhina Panchangam",
+    ta: "தமிழ் காலண்டர் {year} – மாதாந்திர தமிழ் காலண்டர், நல்ல நேரம் | தின பஞ்சாங்கம்",
+  },
+  yearH1: { en: "Tamil Calendar {year} – Monthly Tamil Calendar", ta: "தமிழ் காலண்டர் {year} – மாதாந்திர காலண்டர்" },
+  yearDesc: {
+    en: "Tamil monthly calendar {year} (calendar {year} Tamil): every month with tithi, natchathiram, Tamil dates, Amavasai and Pournami days, calculated for Chennai.",
+    ta: "தமிழ் காலண்டர் {year}: ஒவ்வொரு மாதத்தின் திதி, நட்சத்திரம், தமிழ் தேதி, அமாவாசை, பௌர்ணமி நாட்கள் — சென்னை நேரப்படி.",
+  },
+  forCity: { en: "Calculated for {city}.", ta: "{city} நேரப்படி கணக்கிடப்பட்டது." },
+  observances: { en: "Vratham and observance days", ta: "விரத நாட்கள்" },
+  prevMonth: { en: "Previous month", ta: "முந்தைய மாதம்" },
+  nextMonth: { en: "Next month", ta: "அடுத்த மாதம்" },
+  allMonths: { en: "All months of {year}", ta: "{year} அனைத்து மாதங்கள்" },
+  faq: { en: "Frequently asked questions", ta: "அடிக்கடி கேட்கப்படும் கேள்விகள்" },
+  qTamilMonth: { en: "What is the Tamil month in {month} {year}?", ta: "{month} {year}-இல் தமிழ் மாதம் என்ன?" },
+  aTamilMonth: { en: "{month} {year} runs from {from} to {to}.", ta: "{month} {year} {from} முதல் {to} வரை." },
+  aMonthStarts: { en: "{tm} begins on {date}.", ta: "{tm} மாதம் {date} அன்று தொடங்குகிறது." },
+  qAmavasai: { en: "When is Amavasai in {month} {year}?", ta: "{month} {year} அமாவாசை எப்போது?" },
+  qPournami: { en: "When is Pournami in {month} {year}?", ta: "{month} {year} பௌர்ணமி எப்போது?" },
+  aObs: { en: "{name} in {month} {year} ({city}): {dates}.", ta: "{month} {year} {name} ({city}): {dates}." },
+  aNone: { en: "There is no {name} in {month} {year} ({city}).", ta: "{month} {year}-இல் {name} இல்லை ({city})." },
+  monthCalendar: { en: "{month} {year} Tamil calendar", ta: "{month} {year} தமிழ் காலண்டர்" },
+};
+// Months with calendar pages (inclusive)
+export const CAL_FIRST = "2026-10";
+export const CAL_LAST = "2027-12";
 export const MIN_DATE = "1950-01-01";
 export const MAX_DATE = "2100-12-31";
 

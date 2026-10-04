@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "../globals.css";
-import { LANGS, SITE, T, TODAY_TOOLS, TOOL_TEXT, isLang } from "@/lib/site";
+import { CAL_TEXT, LANGS, SITE, T, TODAY_TOOLS, TOOL_TEXT, isLang } from "@/lib/site";
 
 // No `dynamicParams = false` here: child routes inherit it, and the any-date
 // pages must render on demand. Unknown languages still 404 via notFound().
@@ -33,6 +33,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
                   {TOOL_TEXT[tool].nav[lang]}
                 </Link>
               ))}
+              <Link href={`/${lang}/tamil-calendar`} className="hover:text-maroon">
+                {CAL_TEXT.nav[lang]}
+              </Link>
               <Link href={`/${other}`} className="rounded border border-stone-300 px-2 py-0.5 dark:border-stone-600" hrefLang={other}>
                 {T.langSwitch[lang]}
               </Link>
