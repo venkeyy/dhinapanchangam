@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { CITIES } from "@/engine/cities";
 import { CAL_MONTHS, CAL_YEARS, monthPath } from "@/lib/calendar";
+import { VRATHAM_KEYS, VRATHAM_YEARS, vrathamPath } from "@/lib/vratham";
 import { LANGS, SITE, TOOLS, type Lang } from "@/lib/site";
 
 type Entry = MetadataRoute.Sitemap[number];
@@ -30,6 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       both((l) => monthPath(l, m, c.slug), { changeFrequency: "monthly", priority: c.slug === "chennai" ? 0.9 : c.country === "IN" ? 0.6 : 0.5 }),
     ),
   );
+  const vrathams = VRATHAM_KEYS.flatMap((k) =>
+    VRATHAM_YEARS.flatMap((y) =>
+      CITIES.flatMap((c) =>
+        both((l) => vrathamPath(l, k, y, c.slug), { changeFrequency: "monthly", priority: c.slug === "chennai" ? 0.9 : c.country === "IN" ? 0.6 : 0.5 }),
+      ),
+    ),
+  );
   const info = ["contact", "privacy"].flatMap((p) => both((l) => `/${l}/${p}`, { changeFrequency: "yearly", priority: 0.2 }));
-  return [...home, ...tools, ...years, ...months, ...info];
+  return [...home, ...tools, ...years, ...months, ...vrathams, ...info];
 }

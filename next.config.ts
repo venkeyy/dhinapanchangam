@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
       { source: "/", destination: "/en", permanent: false },
       // Chennai is the default city: its month calendar has no city in the address
       { source: "/:lang/tamil-calendar/:year/:month/chennai", destination: "/:lang/tamil-calendar/:year/:month", permanent: true },
+      {
+        source: "/:lang/:vratham(amavasai|pournami|ekadasi|pradosham|sankatahara-chaturthi|sashti|kiruthigai)/:year/chennai",
+        destination: "/:lang/:vratham/:year",
+        permanent: true,
+      },
     ];
   },
 };

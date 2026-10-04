@@ -22,6 +22,9 @@ export type Observance = { key: ObservanceKey; name: Name; icon: string };
 
 const n = (en: string, ta: string): Name => ({ en, ta });
 
+/** Pradosha kalam length, also shown on the Pradosham dates page. */
+export const PRADOSHA_KALAM_MINUTES = 90;
+
 export const OBSERVANCE_INFO: Record<ObservanceKey, { name: Name; icon: string }> = {
   amavasai: { name: n("Amavasai", "அமாவாசை"), icon: "🌑" },
   pournami: { name: n("Pournami", "பௌர்ணமி"), icon: "🌕" },
@@ -44,8 +47,41 @@ const TITHI = {
 };
 const KARTHIGAI_NATCHATHIRAM = 2; // Ashwini 0, Bharani 1, Karthigai 2
 
+// Special names by Tamil month of the observance day (TO CHECK against printed
+// panchangams). Tamil month index: 0 Chithirai, 1 Vaikasi, 2 Aani, 3 Aadi,
+// 4 Avani, 5 Purattasi, 6 Aippasi, 7 Karthigai, 8 Margazhi, 9 Thai, 10 Maasi, 11 Panguni.
+const SPECIAL: Partial<Record<ObservanceKey, { month: number; tithi?: number; name: Name }[]>> = {
+  amavasai: [
+    { month: 3, name: n("Aadi Amavasai", "ஆடி அமாவாசை") },
+    { month: 5, name: n("Mahalaya Amavasai", "மஹாளய அமாவாசை") },
+    { month: 9, name: n("Thai Amavasai", "தை அமாவாசை") },
+  ],
+  pournami: [
+    { month: 0, name: n("Chithra Pournami", "சித்ரா பௌர்ணமி") },
+    { month: 7, name: n("Karthigai Pournami", "கார்த்திகை பௌர்ணமி") },
+  ],
+  // Vaikunta Ekadasi: Valarpirai Ekadasi in Margazhi
+  ekadasi: [{ month: 8, tithi: 10, name: n("Vaikunta Ekadasi", "வைகுண்ட ஏகாதசி") }],
+  // Skanda Sashti: Valarpirai Sashti in Aippasi
+  sashti: [{ month: 6, name: n("Skanda Sashti", "கந்த சஷ்டி") }],
+  // Karthigai Deepam: Karthigai natchathiram day in the month of Karthigai
+  kiruthigai: [
+    { month: 3, name: n("Aadi Kiruthigai", "ஆடி கிருத்திகை") },
+    { month: 7, name: n("Karthigai Deepam", "கார்த்திகை தீபம்") },
+  ],
+};
+const SANI_PRADOSHAM = n("Sani Pradosham", "சனி பிரதோஷம்");
+const SOMA_PRADOSHAM = n("Soma Pradosham", "சோம பிரதோஷம்");
+
+/** All special names an observance can have (for "When is Aadi Amavasai?" questions). */
+export const specialNames = (key: ObservanceKey): Name[] =>
+  key === "pradosham" ? [SANI_PRADOSHAM, SOMA_PRADOSHAM] : (SPECIAL[key] ?? []).map((r) => r.name);
+
+const specialName = (key: ObservanceKey, p: Panchang) =>
+  SPECIAL[key]?.find((r) => r.month === p.tamil.monthIndex && (r.tithi == null || r.tithi === p.tithi[0].index))?.name;
+
 /** Pradosha kalam: from sunset to this many minutes after sunset. */
-const PRADOSHA_MINUTES = 90;
+const PRADOSHA_MINUTES = PRADOSHA_KALAM_MINUTES;
 
 const ms = (iso: string) => new Date(iso).getTime();
 
@@ -80,7 +116,8 @@ export function observancesFor(days: Panchang[]): Observance[][] {
 
   return days.map((p, i) => {
     const out: Observance[] = [];
-    const add = (key: ObservanceKey, name?: Name) => out.push({ key, name: name ?? OBSERVANCE_INFO[key].name, icon: OBSERVANCE_INFO[key].icon });
+    const add = (key: ObservanceKey, name?: Name) =>
+      out.push({ key, name: name ?? specialName(key, p) ?? OBSERVANCE_INFO[key].name, icon: OBSERVANCE_INFO[key].icon });
     const tithi = sunriseTithi(p);
     const prevTithi = i > 0 ? sunriseTithi(days[i - 1]) : -1;
     /** `index` is the sunrise tithi today but was not yesterday (first of two days). */
@@ -104,8 +141,8 @@ export function observancesFor(days: Panchang[]): Observance[][] {
     const next = i < days.length - 1 ? pradosham[i + 1] : 0;
     if (pr > 0 && pr > prev && pr >= next) {
       const wd = p.weekday.index; // 0 = Sunday
-      if (wd === 6) add("pradosham", n("Sani Pradosham", "சனி பிரதோஷம்"));
-      else if (wd === 1) add("pradosham", n("Soma Pradosham", "சோம பிரதோஷம்"));
+      if (wd === 6) add("pradosham", SANI_PRADOSHAM);
+      else if (wd === 1) add("pradosham", SOMA_PRADOSHAM);
       else add("pradosham");
     }
 

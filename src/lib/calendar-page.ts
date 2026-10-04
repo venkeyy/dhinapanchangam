@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import { DateTime } from "luxon";
 import type { City } from "@/engine/cities";
 import { OBSERVANCE_INFO, type ObservanceKey } from "@/engine/observances";
@@ -7,13 +8,13 @@ import { faqNode, pageSchema } from "./schema";
 import { CAL_TEXT, LANGS, SITE, fill, type Lang } from "./site";
 
 const longDay = (date: string, lang: Lang) =>
-  DateTime.fromISO(date).setLocale(lang === "ta" ? "ta" : "en").toFormat(lang === "ta" ? "d MMMM, cccc" : "cccc, d MMMM");
+  DateTime.fromISO(date).setLocale(lang === "ta" ? "ta" : "en").toFormat(lang === "ta" ? "d MMMM (cccc)" : "cccc, d MMMM");
 
 const languages = (path: (l: Lang) => string) =>
   Object.fromEntries([...LANGS.map((l) => [l === "ta" ? "ta-IN" : "en", path(l)]), ["x-default", path("en")]]);
 
 /** Everything a month page shows and tells search engines, computed once. */
-export function monthContent(lang: Lang, ym: YM, city: City) {
+function monthContentUncached(lang: Lang, ym: YM, city: City) {
   const days = monthDays(ym, city);
   const cityName = city.name[lang];
   const month = monthName(ym.month, lang);
@@ -111,3 +112,6 @@ export function yearContent(lang: Lang, year: number, city: City) {
   });
   return { months, h1, metadata, schema };
 }
+
+/** Cached per request: the page and its metadata share one calculation. */
+export const monthContent = cache(monthContentUncached);

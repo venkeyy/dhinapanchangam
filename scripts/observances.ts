@@ -2,7 +2,7 @@
 //   npx tsx scripts/observances.ts 2026-10-01 2026-12-31 chennai
 import { DateTime } from "luxon";
 import { CITIES } from "../src/engine/cities";
-import { observancesFor } from "../src/engine/observances";
+import { OBSERVANCE_INFO, observancesFor, type ObservanceKey } from "../src/engine/observances";
 import { computePanchang } from "../src/engine/panchang";
 
 const [from = "2026-10-01", to = "2026-12-31", slug = "chennai"] = process.argv.slice(2);
@@ -15,9 +15,9 @@ const obs = observancesFor(days);
 
 const t = (iso: string | null) => (iso ? DateTime.fromISO(iso, { zone: city.tz }).plus({ seconds: 30 }).toFormat("dd LLL hh:mm a") : "—");
 console.log(`${city.name.en}, ${from} to ${to}\n`);
-for (const key of ["amavasai", "pournami", "pradosham", "sankatahara", "ekadasi", "sashti", "kiruthigai"]) {
+for (const key of ["amavasai", "pournami", "pradosham", "sankatahara", "ekadasi", "sashti", "kiruthigai"] as ObservanceKey[]) {
   const rows = days.flatMap((p, i) => (i === 0 || i === days.length - 1 ? [] : obs[i].filter((o) => o.key === key).map((o) => ({ p, o }))));
-  console.log(`${rows[0]?.o.name.en.replace(/^(Sani|Soma) /, "") ?? key}:`);
+  console.log(`${OBSERVANCE_INFO[key].name.en}:`);
   for (const { p, o } of rows) {
     const tithi = p.tithi.map((e) => `${e.name.en} till ${t(e.end)}`).join(", ");
     const extra = key === "sankatahara" ? `  moonrise ${t(p.moon.rise)}` : key === "pradosham" ? `  sunset ${t(p.sun.set)}` : "";

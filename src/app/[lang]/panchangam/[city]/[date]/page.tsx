@@ -11,6 +11,7 @@ import { fmtDate, isIsoDate } from "@/lib/format";
 import { cityOptions, dateMetadata, dateSchema } from "@/lib/page-data";
 import { dayObservances, inCalendar, monthName, monthPath } from "@/lib/calendar";
 import { CAL_TEXT, DATE_TEXT, MAX_DATE, MIN_DATE, T, fill, isLang } from "@/lib/site";
+import { VRATHAM_YEARS, vrathamPath } from "@/lib/vratham";
 
 // Any date from 1950 to 2100. Nothing is built ahead of time: each page is
 // computed on its first visit and then kept (a date's panchangam never changes;
@@ -56,11 +57,18 @@ export default async function DatePage({ params }: PageProps<"/[lang]/panchangam
           <div className="space-y-2">
             {obs.length > 0 && (
               <p className="flex flex-wrap gap-2">
-                {obs.map((o) => (
-                  <span key={o.key} className="rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900 dark:bg-amber-950/50 dark:text-amber-200">
-                    {o.icon} {o.name[lang]}
-                  </span>
-                ))}
+                {obs.map((o) => {
+                  const cls = "rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900 dark:bg-amber-950/50 dark:text-amber-200";
+                  return VRATHAM_YEARS.includes(ym.year) ? (
+                    <Link key={o.key} href={vrathamPath(lang, o.key, ym.year, city.slug)} className={`${cls} hover:underline`}>
+                      {o.icon} {o.name[lang]}
+                    </Link>
+                  ) : (
+                    <span key={o.key} className={cls}>
+                      {o.icon} {o.name[lang]}
+                    </span>
+                  );
+                })}
               </p>
             )}
             <DateNav lang={lang} city={city.slug} tz={city.tz} date={date} />

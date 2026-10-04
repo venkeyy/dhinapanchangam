@@ -8,6 +8,7 @@ import { inCalendar, monthName, monthPath, shiftMonth, type YM } from "@/lib/cal
 import { monthContent } from "@/lib/calendar-page";
 import { cityOptions } from "@/lib/page-data";
 import { CAL_TEXT, T, fill, type Lang } from "@/lib/site";
+import { VRATHAM_KEYS, vrathamPath } from "@/lib/vratham";
 
 const chip = "rounded-full border border-stone-300 px-3 py-1 hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800";
 
@@ -45,10 +46,10 @@ export default function MonthPage({ lang, ym, city }: { lang: Lang; ym: YM; city
       </nav>
 
       <p className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-stone-600 dark:text-stone-300">
-        {Object.values(OBSERVANCE_INFO).map((o) => (
-          <span key={o.icon}>
-            {o.icon} {o.name[lang]}
-          </span>
+        {VRATHAM_KEYS.map((k) => (
+          <Link key={k} href={vrathamPath(lang, k, ym.year, city.slug)} className="hover:text-maroon hover:underline">
+            {OBSERVANCE_INFO[k].icon} {OBSERVANCE_INFO[k].name[lang]}
+          </Link>
         ))}
       </p>
 
@@ -61,7 +62,9 @@ export default function MonthPage({ lang, ym, city }: { lang: Lang; ym: YM; city
             {groups.map((g) => (
               <div key={g.key} className="grid gap-1 py-2 text-[15px] sm:grid-cols-[13rem_1fr]">
                 <dt className="font-medium">
-                  {g.icon} {g.name[lang]}
+                  <Link href={vrathamPath(lang, g.key, ym.year, city.slug)} className="hover:text-maroon hover:underline">
+                    {g.icon} {g.name[lang]}
+                  </Link>
                 </dt>
                 <dd className="flex flex-wrap gap-x-3 gap-y-1">
                   {g.days.map((d) => (
