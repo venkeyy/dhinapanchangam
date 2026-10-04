@@ -27,10 +27,11 @@ export function toolPanchang(tool: Tool, city: City) {
 const languages = (path: (l: Lang) => string) =>
   Object.fromEntries([...LANGS.map((l) => [l === "ta" ? "ta-IN" : "en", path(l)]), ["x-default", path("en")]]);
 
-const toolVars = (lang: Lang, tool: Tool, city: City) => ({
-  city: city.name[lang],
-  date: fmtShortDate(dateForDay(splitTool(tool).day, city.tz), city.tz),
-});
+const toolVars = (lang: Lang, tool: Tool, city: City) => {
+  const date = dateForDay(splitTool(tool).day, city.tz);
+  // English: "4 Oct 2026" (short, for titles); Tamil: "4 அக்டோபர் 2026"
+  return { city: city.name[lang], date: lang === "ta" ? fmtDate(date, "ta") : fmtShortDate(date, city.tz) };
+};
 const dateVars = (lang: Lang, date: string, city: City) => ({ city: city.name[lang], date: fmtDate(date, lang) });
 
 export function toolMetadata(lang: Lang, tool: Tool, city: City): Metadata {

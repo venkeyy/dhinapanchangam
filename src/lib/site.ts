@@ -43,7 +43,7 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
     h1: { en: "Nalla Neram Today in {city}", ta: "இன்றைய நல்ல நேரம் — {city}" },
     title: {
       en: "Nalla Neram Today {city} – Gowri Panchangam {date} | Dhina Panchangam",
-      ta: "இன்றைய நல்ல நேரம் {city} – கௌரி பஞ்சாங்கம் {date}",
+      ta: "இன்றைய நல்ல நேரம் {city} – கௌரி பஞ்சாங்கம் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
       en: "Nalla neram today in {city} with the full Gowri panchangam for day and night, based on today's actual sunrise and sunset.",
@@ -55,7 +55,7 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
     h1: { en: "Rahu Kalam Today in {city}", ta: "இன்றைய ராகு காலம் — {city}" },
     title: {
       en: "Rahu Kalam Today {city} – Yamagandam & Kuligai {date} | Dhina Panchangam",
-      ta: "இன்றைய ராகு காலம் {city} – எமகண்டம், குளிகை {date}",
+      ta: "இன்றைய ராகு காலம் {city} – எமகண்டம், குளிகை {date} | தின பஞ்சாங்கம்",
     },
     desc: {
       en: "Rahu kalam, yamagandam and kuligai timings today in {city}, calculated from the local sunrise and sunset.",
@@ -67,7 +67,7 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
     h1: { en: "Horai Today in {city}", ta: "இன்றைய ஹோரை — {city}" },
     title: {
       en: "Horai Today {city} – Horai Timings in Tamil {date} | Dhina Panchangam",
-      ta: "இன்றைய ஹோரை {city} – ஹோரை நேரங்கள் {date}",
+      ta: "இன்றைய ஹோரை {city} – ஹோரை நேரங்கள் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
       en: "Today's horai (planetary hours) in {city} for day and night, starting from the local sunrise.",
@@ -91,7 +91,7 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
     h1: { en: "Nalla Neram Tomorrow in {city}", ta: "நாளை நல்ல நேரம் — {city}" },
     title: {
       en: "Nalla Neram Tomorrow {city} – Gowri Panchangam {date} | Dhina Panchangam",
-      ta: "நாளை நல்ல நேரம் {city} – கௌரி பஞ்சாங்கம் {date}",
+      ta: "நாளை நல்ல நேரம் {city} – கௌரி பஞ்சாங்கம் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
       en: "Nalla neram tomorrow ({date}) in {city} with the full Gowri panchangam for day and night, based on the actual local sunrise and sunset.",
@@ -103,7 +103,7 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
     h1: { en: "Rahu Kalam Tomorrow in {city}", ta: "நாளை ராகு காலம் — {city}" },
     title: {
       en: "Rahu Kalam Tomorrow {city} – Yamagandam & Kuligai {date} | Dhina Panchangam",
-      ta: "நாளை ராகு காலம் {city} – எமகண்டம், குளிகை {date}",
+      ta: "நாளை ராகு காலம் {city} – எமகண்டம், குளிகை {date} | தின பஞ்சாங்கம்",
     },
     desc: {
       en: "Rahu kalam, yamagandam and kuligai timings tomorrow ({date}) in {city}, calculated from the local sunrise and sunset.",
@@ -115,7 +115,7 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
     h1: { en: "Horai Tomorrow in {city}", ta: "நாளைய ஹோரை — {city}" },
     title: {
       en: "Horai Tomorrow {city} – Horai Timings in Tamil {date} | Dhina Panchangam",
-      ta: "நாளைய ஹோரை {city} – ஹோரை நேரங்கள் {date}",
+      ta: "நாளைய ஹோரை {city} – ஹோரை நேரங்கள் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
       en: "Tomorrow's horai (planetary hours) in {city} ({date}) for day and night, starting from the local sunrise.",
