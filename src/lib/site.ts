@@ -34,8 +34,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "இன்றைய பஞ்சாங்கம் {city} – {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Today's Tamil panchangam for {city}: tithi, natchathiram, yogam, karanam, nalla neram, rahu kalam and sunrise, calculated for your city.",
-      ta: "{city} இன்றைய தமிழ் பஞ்சாங்கம்: திதி, நட்சத்திரம், யோகம், கரணம், நல்ல நேரம், ராகு காலம் மற்றும் சூரிய உதயம்.",
+      en: "Check today's Tamil panchangam for {city}: tithi, natchathiram, yogam, karanam, nalla neram, rahu kalam and sunrise, updated every day for your city.",
+      ta: "{city} இன்றைய தமிழ் பஞ்சாங்கம்: திதி, நட்சத்திரம், யோகம், கரணம், நல்ல நேரம், ராகு காலம், சூரிய உதயம். உங்கள் நகரத்திற்கு தினமும் புதுப்பிக்கப்படுகிறது.",
     },
   },
   "nalla-neram-today": {
@@ -46,8 +46,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "இன்றைய நல்ல நேரம் {city} – கௌரி பஞ்சாங்கம் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Nalla neram today in {city} with the full Gowri panchangam for day and night, based on today's actual sunrise and sunset.",
-      ta: "{city} இன்றைய நல்ல நேரம் மற்றும் கௌரி பஞ்சாங்கம் (காலை, மாலை) — இன்றைய சூரிய உதயத்தின் அடிப்படையில்.",
+      en: "Find today's nalla neram (good time) in {city} with the full Gowri panchangam for day and night, updated daily from your city's sunrise and sunset.",
+      ta: "{city} இன்றைய நல்ல நேரம் மற்றும் கௌரி பஞ்சாங்கம் (காலை, மாலை), உங்கள் நகர சூரிய உதயத்தின்படி தினமும் புதுப்பிக்கப்படுகிறது.",
     },
   },
   "rahu-kalam-today": {
@@ -58,8 +58,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "இன்றைய ராகு காலம் {city} – எமகண்டம், குளிகை {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Rahu kalam, yamagandam and kuligai timings today in {city}, calculated from the local sunrise and sunset.",
-      ta: "{city} இன்றைய ராகு காலம், எமகண்டம், குளிகை நேரங்கள் — உள்ளூர் சூரிய உதயம் மற்றும் அஸ்தமனத்தின் அடிப்படையில்.",
+      en: "Know today's rahu kalam, yamagandam and kuligai timings in {city} before you start anything important. Updated daily from local sunrise and sunset.",
+      ta: "முக்கியமான காரியம் தொடங்கும் முன் {city} இன்றைய ராகு காலம், எமகண்டம், குளிகை நேரங்களைத் தெரிந்துகொள்ளுங்கள். தினமும் புதுப்பிக்கப்படுகிறது.",
     },
   },
   "horai-today": {
@@ -70,8 +70,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "இன்றைய ஹோரை {city} – ஹோரை நேரங்கள் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Today's horai (planetary hours) in {city} for day and night, starting from the local sunrise.",
-      ta: "{city} இன்றைய ஹோரை நேரங்கள் (பகல், இரவு) — உள்ளூர் சூரிய உதயத்திலிருந்து.",
+      en: "See today's horai (planetary hours) in {city} for day and night, starting from your local sunrise. Updated every day.",
+      ta: "{city} இன்றைய ஹோரை நேரங்கள் (பகல், இரவு), உள்ளூர் சூரிய உதயத்திலிருந்து. தினமும் புதுப்பிக்கப்படுகிறது.",
     },
   },
   "panchangam-tomorrow": {
@@ -82,8 +82,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "நாளைய பஞ்சாங்கம் {city} – {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Tomorrow's Tamil panchangam for {city} ({date}): tithi, natchathiram, yogam, karanam, nalla neram, rahu kalam and sunrise, calculated for your city.",
-      ta: "{city} நாளைய ({date}) தமிழ் பஞ்சாங்கம்: திதி, நட்சத்திரம், யோகம், கரணம், நல்ல நேரம், ராகு காலம் மற்றும் சூரிய உதயம்.",
+      en: "Plan ahead with tomorrow's Tamil panchangam for {city}: tithi, natchathiram, nalla neram, rahu kalam and sunrise, calculated for your city.",
+      ta: "நாளைக்கு முன்கூட்டியே திட்டமிடுங்கள்: {city} நாளைய தமிழ் பஞ்சாங்கம், திதி, நட்சத்திரம், நல்ல நேரம், ராகு காலம், சூரிய உதயம்.",
     },
   },
   "nalla-neram-tomorrow": {
@@ -94,8 +94,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "நாளை நல்ல நேரம் {city} – கௌரி பஞ்சாங்கம் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Nalla neram tomorrow ({date}) in {city} with the full Gowri panchangam for day and night, based on the actual local sunrise and sunset.",
-      ta: "{city} நாளை ({date}) நல்ல நேரம் மற்றும் கௌரி பஞ்சாங்கம் (காலை, மாலை) — உண்மையான சூரிய உதயத்தின் அடிப்படையில்.",
+      en: "Planning something tomorrow? Find tomorrow's nalla neram in {city} with the full Gowri panchangam for day and night.",
+      ta: "நாளை ஏதாவது திட்டமிடுகிறீர்களா? {city} நாளைய நல்ல நேரம் மற்றும் கௌரி பஞ்சாங்கம் (காலை, மாலை) இங்கே.",
     },
   },
   "rahu-kalam-tomorrow": {
@@ -106,8 +106,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "நாளை ராகு காலம் {city} – எமகண்டம், குளிகை {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Rahu kalam, yamagandam and kuligai timings tomorrow ({date}) in {city}, calculated from the local sunrise and sunset.",
-      ta: "{city} நாளை ({date}) ராகு காலம், எமகண்டம், குளிகை நேரங்கள் — உள்ளூர் சூரிய உதயம் மற்றும் அஸ்தமனத்தின் அடிப்படையில்.",
+      en: "Check tomorrow's rahu kalam, yamagandam and kuligai in {city} and plan your day around them.",
+      ta: "{city} நாளைய ராகு காலம், எமகண்டம், குளிகை நேரங்கள். உங்கள் நாளை முன்கூட்டியே திட்டமிடுங்கள்.",
     },
   },
   "horai-tomorrow": {
@@ -118,8 +118,8 @@ export const TOOL_TEXT: Record<Tool, { nav: L; h1: L; title: L; desc: L }> = {
       ta: "நாளைய ஹோரை {city} – ஹோரை நேரங்கள் {date} | தின பஞ்சாங்கம்",
     },
     desc: {
-      en: "Tomorrow's horai (planetary hours) in {city} ({date}) for day and night, starting from the local sunrise.",
-      ta: "{city} நாளைய ({date}) ஹோரை நேரங்கள் (பகல், இரவு) — உள்ளூர் சூரிய உதயத்திலிருந்து.",
+      en: "Tomorrow's horai (planetary hours) in {city} for day and night, from the local sunrise. Plan your important work ahead.",
+      ta: "{city} நாளைய ஹோரை நேரங்கள் (பகல், இரவு). முக்கிய வேலைகளை முன்கூட்டியே திட்டமிடுங்கள்.",
     },
   },
 };
