@@ -30,5 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       both((l) => monthPath(l, m, c.slug), { changeFrequency: "monthly", priority: c.slug === "chennai" ? 0.9 : c.country === "IN" ? 0.6 : 0.5 }),
     ),
   );
-  return [...home, ...tools, ...years, ...months];
+  const info = ["contact", "privacy"].flatMap((p) => both((l) => `/${l}/${p}`, { changeFrequency: "yearly", priority: 0.2 }));
+  return [...home, ...tools, ...years, ...months, ...info];
 }

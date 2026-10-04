@@ -2,6 +2,7 @@ export const SITE = {
   name: { en: "Dhina Panchangam", ta: "தின பஞ்சாங்கம்" },
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhinapanchangam.com",
   repo: "https://github.com/venkeyy/dhinapanchangam", // public source link required by AGPL
+  email: "dhinapanchangam@gmail.com", // public contact address (Contact + Privacy pages)
   gaId: process.env.NEXT_PUBLIC_GA_ID, // Google Analytics 4 measurement ID (G-…)
 };
 
@@ -230,6 +231,8 @@ export const T: Record<string, L> = {
     ta: "அனைத்து நேரங்களும் {city} ({tz}) நகரத்திற்கு Swiss Ephemeris மற்றும் லஹிரி அயனாம்சம் கொண்டு கணக்கிடப்பட்டவை. ராகு காலம், நல்ல நேரம், ஹோரை ஆகியவை அன்றைய உண்மையான சூரிய உதயம் மற்றும் அஸ்தமனத்தின் அடிப்படையில் கணக்கிடப்படுகின்றன.",
   },
   source: { en: "Source code (AGPL)", ta: "மூல நிரல் (AGPL)" },
+  contact: { en: "Contact", ta: "தொடர்பு கொள்ள" },
+  privacy: { en: "Privacy Policy", ta: "தனியுரிமைக் கொள்கை" },
   langSwitch: { en: "தமிழ்", ta: "English" },
 };
 

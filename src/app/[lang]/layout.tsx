@@ -45,6 +45,14 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <main className="mx-auto max-w-4xl px-4 py-6">{children}</main>
         <footer className="mx-auto max-w-4xl px-4 pb-10 text-xs text-stone-500">
           © {new Date().getFullYear()} {SITE.name[lang]} ·{" "}
+          <Link href={`/${lang}/contact`} className="underline">
+            {T.contact[lang]}
+          </Link>{" "}
+          ·{" "}
+          <Link href={`/${lang}/privacy`} className="underline">
+            {T.privacy[lang]}
+          </Link>{" "}
+          ·{" "}
           <a href={SITE.repo} className="underline">
             {T.source[lang]}
           </a>
